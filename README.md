@@ -1,4 +1,13 @@
-# DIBWeb
+# Note
+
+This project is uploaded, just for the evidence of my coding experience. It is not uploaded completely, I personally remove some sort of stuff from it.
+
+# Project Scope
+
+Frontend: Angular 10
+Backend: .Net Core 3.1 (It is not uploaded in this repository)
+
+# Banking Web Portal
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
