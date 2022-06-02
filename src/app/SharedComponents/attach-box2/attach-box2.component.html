@@ -1,0 +1,45 @@
+<div class="border border-color-e1e br-12 bg-white pd attach-box">
+    <div class="ng-row p-l-r" justify-content-between>
+
+      <div class="ng-col" col-8 col-sm-12>
+        <div class="font-18 font-600 color-354">
+            {{attached2Heading | translate}}
+            
+            <!-- {{"CRSDeclarationForm" | translate}} -->
+        </div>
+        <div class="font-16 font-300 color-08A mt-5 link" (click)="openButtonLink(attached2Link)">
+            {{attached2Text | translate}}
+          <!-- {{"DownloadCRSform" | translate}} -->
+        </div>
+      </div>
+      <div class="ng-col mt-20" col-12 *ngIf="!this.imageError">
+        <div class="font-12 font-400 color-354">
+            {{description | translate}}
+
+          <!-- {{"RequestforTaxpayer" | translate}} -->
+        </div>
+      </div>
+
+      <div class="ng-col mt-20" col-12 *ngIf="this.imageError">
+        <div class="font-16 font-400 color-red">
+            {{imageError | translate}}
+
+          <!-- {{"RequestforTaxpayer" | translate}} -->
+        </div>
+      </div>
+
+      <div class="ng-col" col-auto>
+        <div class="custom-file-uploader mt-5">
+          <input type="file" [id]="id" [name]="'file' + id" #takeinput (change)="CapturePDF($event, PDFName)" />
+          <label for={{id}} *ngIf="!PdfSaved">Attach</label>
+          <label  *ngIf="PdfSaved"  #viewlink (click)="viewButtonLink(AttachedPDFLink)" class="active">View</label>
+          <!-- <a class="btn btn-danger" (click)="removePdf(PDFName)" *ngIf="PdfSaved">Remove</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- {{ imageError | translate}}
+
+  <div #newdiv>
+    <div></div>
+  </div> -->

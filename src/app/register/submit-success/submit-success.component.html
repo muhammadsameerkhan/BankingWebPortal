@@ -1,0 +1,242 @@
+<app-header></app-header>
+
+<div class="container abc-component mt-46">
+  <div class="ng-row bg-2F5" justify-content-center>
+    <div class="ng-col text-align-center mt-46 mb-46" col-8>
+
+      <i class="icon-check-white-big"></i>
+
+      <div class="font-24 color-white font-600 mt-20">
+        {{"Yourapplicationhasbeen" | translate}}
+      </div>
+
+      <div class="font-18 color-white font-300 mt-20">
+        {{"ApplicationReferenceNumber" | translate}}
+      </div>
+      <div class="font-16 color-white font-700">
+        {{ Referencenumber }}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ng-row mt-20 mb-20" justify-content-center align-item-center>
+    <div class="ng-col pd" col-10>
+      <div class="font-16 color-354 font-400 text-align-center">
+        {{"Youwillbereceivinganemailfrom" | translate}}
+      </div>
+
+      <div class="font-16 color-354 font-400 text-align-center mt-20">
+        {{"PleasequoteyouraboveApplication" | translate}}
+      </div>
+
+      <div class="font-16 color-354 font-400 text-align-center mt-20">
+        {{"Forfurtherinquiryplease" | translate}} <a href="mailto:dibrda.inquiry@dibpak.com"
+          class="color-354">dibrda.inquiry@dibpak.com</a>
+      </div>
+
+      <div class="font-16 color-354 font-400 text-align-center mt-20">
+        {{"Foranycomplaintsregarding" | translate}} <a href="mailto:dibrda.complaint@dibpak.com"
+          class="color-354">dibrda.complaint@dibpak.com</a>
+      </div>
+
+      <div class="font-23 color-354 font-600 text-align-center mt-20">
+        {{"Thankyouforchoosingus" | translate}}
+      </div>
+
+      <div class="font-18 color-354 font-700 text-align-center mt-20">
+        {{"DubaiIslamicBankPakistanLimited" | translate}}
+        <div>{{"ThebetterwaytoBank" | translate}}</div>
+      </div>
+    </div>
+
+    <div class="ng-col" col-8 col-md-11 col-sm-11>
+      <div class="ng-row mt-20 mb-20" col-space align-item-center>
+          <div class="ng-col" col-6 col-sm-12>
+            <div class="form-group">
+              <button class="btn-dft" (click)="showPopup()" *ngIf=!this.feedbackcheck>{{"feedback" | translate}}</button>
+            </div>
+          </div>
+          <div class="ng-col mt-on-mob-15" col-6 col-sm-12>
+            <div class="form-group">
+              <button class="btn-dft-white" routerLink="/CurrencyExchangeRate">{{"RoshanDigitalServices" | translate}}</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="ng-row bg-eee" justify-content-center>
+    <div class="ng-col mt-46 mb-46" col-10 col-md-11 col-lg-11>
+
+      <div class="font-12 color-354 font-700 text-align-center">
+        {{"NAYAPAKISTAN" | translate}}
+      </div>
+
+      <div class="ng-row mt-20" justify-content-center>
+        <div class="ng-col" col-6 col-md-12>
+          <div class="font-23 color-354 font-300 text-align-center">
+            {{"Boostyourdeposit" | translate}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ng-row mt-42" col-space justify-content-center>
+        <div class="ng-col" col-4 col-sm-12>
+          <div class="ng-row br-12 bg-white pd height-100" justify-content-between align-item-center>
+            <div class="ng-col" col-7>
+              <div class="font-12 color-354 font-400">
+                {{"DownloadNPCPurchase" | translate}}
+              </div>
+            </div>
+            <div class="ng-col" col-auto>
+              <a href="https://www.dibpak.com/wp-content/uploads/2021/01/Dubai-Islamic-Bank-ISLAMIC-NAYA-PAKISTAN-CERTIFICATES-Transfer-Application-Form.pdf" class="alink" target="_blank"><i class="icon-arrow-white"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="ng-col mt-on-mob-15" col-4 col-sm-12>
+          <div class="ng-row br-12 bg-white pd height-100" justify-content-between align-item-center>
+            <div class="ng-col" col-7>
+              <div class="font-12 color-354 font-400">
+                {{"DownloadNPCRedemption" | translate}}
+              </div>
+            </div>
+            <div class="ng-col" col-auto>
+              <a href="https://www.dibpak.com/wp-content/uploads/2021/01/Dubai-Islamic-Bank-Naya-Pakistan-encashment-Form-Updated-RDAPERSONAL.pdf" class="alink" target="_blank"><i class="icon-arrow-white"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+</div>
+
+<div class="custom-modal rating-modal" #modalOne>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <div class="custom-modal-close">
+      <!-- <i class="icon-close-red" (click)="hidePopup()"></i> -->
+    </div>
+    <div class="custom-modal-canvas-scroller">
+
+      <div class="font-18 font-600 color-2d3">
+        {{"ShareYourFeedback" | translate}}
+      </div>
+
+
+      <div class="ng-row mt-20">
+        <div class="ng-col" col-11>
+          <div class="font-14 font-500 color-354">
+            {{"Howsatisfiedareyou" | translate}}
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="newform">
+        <div class="form-group">
+          <div class="start-rating-box mt-15 mb-15">
+            <star-rating value="3" [totalstars]='5' checkedcolor="#F6D05B" uncheckedcolor="#EAEAEA" size="35px"
+              readonly="false" (rate)="onRate($event)" space="between"></star-rating>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.rating">
+              <span class="error-label"
+                *ngIf="newform.controls.Rating.hasError(validation.type) &&(newform.controls.Rating.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'rating') }}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <textarea placeholder="Comments (optional)" class="not-on-this" formControlName="Comment"></textarea>
+        </div>
+      </form>
+
+      <div class="form-group mt-46">
+        <button class="btn-dft" [disabled]="isFormValid()" (click)="formpost()">
+          {{"Submit" | translate}}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container abc-component mt-46">
+    <div class="ng-row bg-2F5" justify-content-center>
+        <div class="ng-col text-align-center mt-46 mb-46" col-8 col-sm-10>
+
+            <i class="icon-check-white-big"></i>
+
+            <div class="font-24 color-white font-600 mt-20">
+                {{"AllsetActivateyour" | translate}}
+            </div>
+
+            <div class="ng-row" justify-content-center>
+                <div class="ng-col" col-9>
+                    <div class="font-14 color-white font-400 mt-15">
+                        {{"Youhavesuccesfullysubmitted" | translate}}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="ng-row mt-46" justify-content-center>
+        <div class="ng-col pd bg-F6F br-12" col-6 col-sm-10>
+            <div class="ng-row" align-item-center>
+                <div class="ng-col" col-auto>
+                    <div class="bg-white br-12 icon-box-white">
+                        1
+                    </div>
+                </div>
+                <div class="ng-col" col-auto>
+                    <div class="p-l-r font-16 font-600 color-354">
+                        Download DIB App
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ng-row mt-15" justify-content-center>
+        <div class="ng-col pd bg-F6F br-12" col-6 col-sm-10>
+            <div class="ng-row" align-item-center>
+                <div class="ng-col" col-auto>
+                    <div class="bg-white br-12 icon-box-white">
+                        2
+                    </div>
+                </div>
+                <div class="ng-col" col-auto>
+                    <div class="p-l-r font-16 font-600 color-354">
+                        Video call verification
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ng-row mt-15 mb-46" justify-content-center>
+        <div class="ng-col pd bg-08A br-12" col-6 col-sm-10>
+            <div class="ng-row" align-item-center>
+                <div class="ng-col" col-auto>
+                    <div class="bg-08A br-12 icon-box-white">
+                        <i class="icon-check-white"></i>
+                    </div>
+                </div>
+                <div class="ng-col" col-auto>
+                    <div class="p-l-r font-16 font-600 color-white">
+                        Account Activated
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-46 mb-46 text-align-center">
+        <a href="#"><img src="../../assets/images/playstore.svg" width="150"></a>
+    </div>
+
+</div> -->

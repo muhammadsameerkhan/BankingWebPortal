@@ -1,0 +1,468 @@
+@import "import/variables.scss";
+
+@font-face {
+    font-family: "AxiformaThin";
+    font-style: normal;
+    src: url("../../assets/fonts/axiforma_thin-webfont.woff");
+    src: url("../../assets/fonts/axiforma_thin-webfont.woff2");
+}
+@font-face {
+    font-family: "AxiformaLight";
+    font-style: normal;
+    src: url("../../assets/fonts/axiforma_light-webfont.woff");
+    src: url("../../assets/fonts/axiforma_light-webfont.woff2");
+}
+
+@font-face {
+    font-family: "Axiforma";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../assets/fonts/Axiforma.ttf");
+    src: url("../../assets/fonts/AxiformaRegular.otf");
+}
+@font-face {
+    font-family: 'axiformabold';
+    src: url('../../assets/fonts/axiformabold-webfont.woff2') format('woff2'),
+         url('../../assets/fonts/axiformabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+* {
+    font-family: "Axiforma" !important;
+    box-sizing: border-box;
+}
+
+//========================= Font Size & Font Weight & Lineheight Classes
+.font-10 {
+    font-size: $size-10 !important;
+}
+.font-12 {
+    font-size: $size-12 !important;
+}
+.font-14 {
+    font-size: $size-14 !important;
+}
+.font-16 {
+    font-size: $size-16 !important;
+}
+.font-18 {
+    font-size: $size-18 !important;
+}
+.font-20 {
+    font-size: $size-20 !important;
+}
+.font-23 {
+    font-size: $size-23 !important;
+}
+.font-24 {
+    font-size: $size-24 !important;
+}
+.font-25 {
+    font-size: $size-25 !important;
+}
+.font-27 {
+    font-size: $size-27 !important;
+}
+.font-30 {
+    font-size: $size-30 !important;
+}
+.font-32 {
+    font-size: $size-32 !important;
+}
+.font-35 {
+    font-size: $size-35 !important;
+}
+.font-40 {
+    font-size: $size-40 !important;
+}
+.font-42 {
+    font-size: $size-42 !important;
+}
+.font-46 {
+    font-size: $size-46 !important;
+}
+.font-64 {
+    font-size: $size-64 !important;
+}
+.font-80 {
+    font-size: $size-80 !important;
+}
+.font-123 {
+    font-size: $size-123 !important;
+}
+
+.line-h-1 {
+    line-height: 1;
+}
+.line-h-20 {
+    line-height: 20px !important;
+}
+.line-h-25 {
+    line-height: 25px;
+}
+.line-h-32 {
+    line-height: 32px;
+}
+.font-200 {
+    font-family: "AxiformaThin" !important;
+}
+.font-300 {
+    font-family: "AxiformaLight" !important;
+}
+.font-400 {
+    font-weight: 400;
+}
+.font-500 {
+    font-weight: 500;
+}
+.font-600 {
+    font-weight: 600;
+}
+.font-700 {
+    font-family: "axiformabold" !important;
+}
+
+.text-align-left {
+    text-align: left;
+}
+.text-align-center {
+    text-align: center;
+}
+.text-align-right {
+    text-align: right;
+}
+
+//========================= Font Size & Font Weight Classes End
+
+//========================= Structure Spaces Outside
+
+.m-0 {
+    margin: 0 !important;
+}
+.m-0-auto {
+    margin: 0 auto !important;
+}
+.mg {
+    margin: $size-15;
+}
+.m-l-r {
+    margin-left: $size-15;
+    margin-right: $size-15;
+}
+.m-row {
+    margin-left: -$size-15;
+    margin-right: -$size-15;
+}
+.mt-5 {
+    margin-top: $size-5 !important;
+}
+.mt-10 {
+    margin-top: $size-10 !important;
+}
+.mt-15 {
+    margin-top: $size-15 !important;
+}
+.mt-20 {
+    margin-top: $size-20 !important;
+}
+.mt-25 {
+    margin-top: $size-25 !important;
+}
+.mt-30 {
+    margin-top: $size-30 !important;
+}
+.mt-32 {
+    margin-top: $size-32 !important;
+}
+.mt-42 {
+    margin-top: $size-42 !important;
+}
+.mt-46 {
+    margin-top: $size-46 !important;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.mb-5 {
+    margin-bottom: $size-5 !important;
+}
+.mb-10 {
+    margin-bottom: $size-10 !important;
+}
+.mb-15 {
+    margin-bottom: $size-15 !important;
+}
+.mb-20 {
+    margin-bottom: $size-20 !important;
+}
+.mb-25 {
+    margin-bottom: $size-25 !important;
+}
+.mb-30 {
+    margin-bottom: $size-30 !important;
+}
+.mb-32 {
+    margin-bottom: $size-32 !important;
+}
+.mb-42 {
+    margin-bottom: $size-42 !important;
+}
+.mb-46 {
+    margin-bottom: $size-46 !important;
+}
+
+.mr-15 {
+    margin-right: $size-15 !important;
+}
+.ml-5 {
+    margin-left: $size-5 !important;
+}
+.ml-15 {
+    margin-left: $size-15 !important;
+}
+
+//========================= Structure Spaces Outside End
+
+//========================= Structure Spaces Inside
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.pd {
+    padding: $size-15;
+}
+
+.pd-30 {
+    padding: $size-30;
+}
+
+.p-15 {
+    padding: $size-15 !important;
+}
+.p-l-r {
+    padding-left: $size-15 !important;
+    padding-right: $size-15 !important;
+}
+.p-l-r-10 {
+    padding-left: $size-10 !important;
+    padding-right: $size-10 !important;
+}
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+.pt-5 {
+    padding-top: $size-5 !important;
+}
+.pt-10 {
+    padding-top: $size-10 !important;
+}
+.pt-15 {
+    padding-top: $size-15 !important;
+}
+.pt-20 {
+    padding-top: $size-20 !important;
+}
+.pt-25 {
+    padding-top: $size-25 !important;
+}
+.pt-30 {
+    padding-top: $size-30 !important;
+}
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+.pb-5 {
+    padding-bottom: $size-5 !important;
+}
+.pb-10 {
+    padding-bottom: $size-10 !important;
+}
+.pb-15 {
+    padding-bottom: $size-15 !important;
+}
+.pb-20 {
+    padding-bottom: $size-20 !important;
+}
+.pb-25 {
+    padding-bottom: $size-25 !important;
+}
+.pb-30 {
+    padding-bottom: $size-30 !important;
+}
+.pl-0 {
+    padding-left: 0 !important;
+}
+.pl-5 {
+    padding-left: $size-5 !important;
+}
+.pl-10 {
+    padding-left: $size-10 !important;
+}
+.pl-15 {
+    padding-left: $size-15 !important;
+}
+.pl-35 {
+    padding-left: $size-35 !important;
+}
+.pr-0 {
+    padding-right: 0 !important;
+}
+.pr-5 {
+    padding-right: $size-5 !important;
+}
+.pr-15 {
+    padding-right: $size-15 !important;
+}
+
+.p-t-b-40 {
+    padding-top: $size-40 !important;
+    padding-bottom: $size-40 !important;
+}
+
+[dir="rtl"] {
+    .pl-10 {
+        padding-left: 0 !important;
+        padding-right: $size-10 !important;
+    }
+    .pl-15 {
+        padding-left: 0 !important;
+        padding-right: $size-15 !important;
+    }
+    .pr-15 {
+        padding-left: $size-15 !important;
+        padding-right: 0 !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .pd-sm-30 {
+        padding: $size-30 !important;
+    }
+}
+
+//========================= Structure Spaces Inside End
+
+//========================= Background Color Classes
+.bg-color-transparent {
+    background-color: transparent !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+.bg-2F5 {
+    background-color: $color-2F5 !important;
+}
+.bg-F6F {
+    background-color: $color-F6F !important;
+}
+.bg-08A {
+    background-color: $color-08A !important;
+}
+.bg-eee {
+    background-color: $color-eee !important;
+}
+
+//========================= Background Color Classes End
+
+//========================= Text Color Classes
+.color-white {
+    color: #fff !important;
+}
+.color-black {
+    color: #000 !important;
+}
+.color-cbd {
+    color: $color-CBD !important;
+}
+.color-eee {
+    color: $color-eee !important;
+}
+.color-2f5 {
+    color: $color-2F5 !important;
+}
+.color-2d3 {
+    color: $color-2D3 !important;
+}
+.color-354 {
+    color: $color-354 !important;
+}
+.color-931 {
+    color: $color-931 !important;
+}
+.color-718 {
+    color: $color-718 !important;
+}
+.color-08A {
+    color: $color-08A !important;
+}
+.color-505 {
+    color: $color-505 !important;
+}
+.color-red {
+    color: red;
+}
+.color-357 {
+    color: $color-357 !important;
+}
+
+//========================= Text Color Classes End
+
+//========================= Border Classes
+
+.border-none {
+    border: none !important;
+}
+.border {
+    border: 1px solid $color-eee;
+}
+.border-top {
+    border-top: 1px solid $color-eee;
+}
+.border-right {
+    border-right: 1px solid $color-eee;
+}
+.border-bottom {
+    border-bottom: 1px solid $color-eee;
+}
+.border-left {
+    border-left: 1px solid $color-eee;
+}
+
+.border-color-e1e {
+    border-color: $color-E1E;
+}
+
+//========================= Border Classes End
+
+.height-100 {
+    height: 100%;
+}
+
+.br-12 {
+    border-radius: 12px;
+}
+
+.link {
+    cursor: pointer;
+}
+.alink {
+    text-decoration: none;
+    transition: all .3s ease;
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.inside-link {
+    .label-link {
+      position: relative;
+      z-index: 10;
+      display: initial;
+    }
+}

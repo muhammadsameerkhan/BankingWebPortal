@@ -1,0 +1,12 @@
+<div class="ng-row mt-30 pt-10" justify-content-center>
+    <div class="ng-col" col-auto>
+      <div class="progress-bar">
+        <div class="center-value">
+          {{counter}}/4
+        </div>
+        <round-progress [current]="current" [max]="max" [color]="'#354F52'" [background]="'#E4CED0'" [radius]="100" [stroke]="15"
+          [rounded]="true" [clockwise]="true" [responsive]="true" [duration]="800"
+          [animation]="'easeInOutQuart'"></round-progress>
+      </div>
+    </div>
+</div>

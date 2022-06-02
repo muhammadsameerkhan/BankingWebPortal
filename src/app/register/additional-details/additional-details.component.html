@@ -1,0 +1,123 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-30 color-2f5 font-600 mt-5">
+        {{"AdditionalDetails" | translate}}
+      </div>
+
+      <div class="font-18 color-354 font-400 mt-5">
+        {{"Pleaseprovideuswithmore" | translate}}
+      </div>
+      <form [formGroup]="newform">
+        <div class="form-group mt-30">
+          <label>{{"Occupation" | translate}}</label>
+          <select formControlName="Occupation">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.labelEn" *ngFor="let a of this.Occupationlist">{{a.labelEn}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Occup">
+            <span class="error-label"
+              *ngIf="newform.controls.Occupation.hasError(validation.type) &&(newform.controls.Occupation.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Occup') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"CompanyName" | translate}}</label>
+          <input type="text" value="" placeholder="Please enter" minlength="3" maxlength="50" mask="S* S* S* S*" formControlName="CompanyName">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.companyName">
+            <span class="error-label"
+              *ngIf="newform.controls.CompanyName.hasError(validation.type) &&(newform.controls.CompanyName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'companyName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"MonthlyIncomePKR" | translate}}</label>
+          <!-- <input name="somename"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number" value="" placeholder="Please enter" maxlength="15" formControlName="MonthlyIncome" /> -->
+          <input type="text" value="" placeholder="Please enter"  mask='999999999999999' 
+            formControlName="MonthlyIncome">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.MonthIncome">
+            <span class="error-label"
+              *ngIf="newform.controls.MonthlyIncome.hasError(validation.type) &&(newform.controls.MonthlyIncome.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'MonthIncome') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"PurposeofAccount" | translate}}</label>
+          <select formControlName="PurposeOfAcc">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.strCode" *ngFor="let a of this.POAList">{{a.strCode}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.POA">
+            <span class="error-label"
+              *ngIf="newform.controls.PurposeOfAcc.hasError(validation.type) &&(newform.controls.PurposeOfAcc.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'POA') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"ExpectedMonthlyCreditTransactions" | translate}}</label>
+          <select formControlName="MonthExpctCrditTrans">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.strCode" *ngFor="let a of this.EMCTRList">{{a.strCode}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.EMCTR">
+            <span class="error-label"
+              *ngIf="newform.controls.MonthExpctCrditTrans.hasError(validation.type) &&(newform.controls.MonthExpctCrditTrans.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'EMCTR') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"ExpectedMonthlyCreditTurnover" | translate}}</label>
+          <input type="text" value="" placeholder="Please enter in numbers" mask="999999999999999999999999999999999999999" 
+            formControlName="ExpctMonthCrditTrnovr">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.EMCTURN">
+            <span class="error-label"
+              *ngIf="newform.controls.ExpctMonthCrditTrnovr.hasError(validation.type) &&(newform.controls.ExpctMonthCrditTrnovr.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'EMCTURN') }}
+            </span>
+          </ng-container>
+        </div>
+
+
+
+        <!-- <div class="form-group mt-30">
+          <label>{{"Remittance" | translate}}</label>
+          <select formControlName="Remittance">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.strCode" *ngFor="let a of this.SOFList">{{a.strCode}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Remittance">
+            <span class="error-label"
+              *ngIf="newform.controls.Remittance.hasError(validation.type) &&(newform.controls.Remittance.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Remittance') }}
+            </span>
+          </ng-container>
+        </div> -->
+      </form>
+
+      <div class="form-group mt-46">
+        <button class="btn-dft-white" [disabled]="isFormValid()" (click)="formpostdolater()">
+          {{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" (click)="formpost()"
+          [disabled]="isFormValid()">{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

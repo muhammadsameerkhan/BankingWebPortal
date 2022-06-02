@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+<div class="container email-component mt-46">
+    <div class="ng-row height-100">
+        <div class="ng-col" col-3 col-sm-12>
+            <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+        </div>
+        <div class="ng-col pt-30 pd-sm-30" col-7 col-sm-12>
+
+            <div class="ng-row height-100 pb-30" align-content-between>
+                <div class="ng-col">
+                    <div class="font-30 color-2f5 font-600 mt-5">
+                        {{"Emailonetimepasscode" | translate}}
+                    </div>
+
+                    <div class="font-18 color-2f5 font-600 mt-15">
+                        {{"AonetimePasswordhas" | translate}} {{ emailtext }}
+                    </div>
+
+                    <!-- <div class="font-14 color-2f5 font-400 mt-15">
+                        {{"Pleaseentertheverificationcodesentto" | translate}} 
+                    </div> -->
+                    <form class="bg-f6f7" [formGroup]="registerForm" >
+                    <div class="form-group mt-30">
+                        <label>{{"EmailVerificationCode" | translate}}</label>
+                        <input type="text" mask="999999" value=""  [(ngModel)]="code" formControlName="otp"  placeholder="6-digit code" (change)='isFormValid()'>
+                    <ng-container item-content *ngFor="let validation of errorKey.validation_messages.otp">
+                        <span class="error-label"
+                          *ngIf="registerForm.controls.otp.hasError(validation.type) &&(registerForm.controls.otp.touched ||submitAttempt)">
+                          {{ getMessage(validation.key,'otp') }}
+                        </span>
+                    </ng-container>
+                    </div>
+                    </form>
+
+                    <div class="font-14 color-2f5 font-600 mt-15">
+                        <span (click)="showPopup()" class="link">
+                            {{"Changeemail" | translate}} ?
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ng-col mb-20">
+                    <div class="form-group mt-15">
+                        <!-- <button class="btn-dft-white" disabled>{{"Senditagainin" | translate}} 1:53</button> -->
+                        <button *ngIf="!this.resendOptbtnShow" disabled class="btn-dft-white">
+                            {{'Resendcodein' | translate}} {{timerexpire}}
+                        </button>
+                        <button *ngIf="this.resendOptbtnShow" class="btn-dft-white" (click)="SendAgain()">
+                            {{"Senditagain" | translate}}
+                        </button>
+                    </div>
+                
+                    <div class="form-group mt-15">
+                        <button class="btn-dft" [disabled]="isFormValid()" (click)="Next()">
+                            {{"Continue" | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal min-width" #modal>
+    <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+    <div class="custom-modal-canvas">
+      <div class="custom-modal-close">
+        <i class="icon-close-black" (click)="hidePopup()"></i>
+      </div>
+      <div class="custom-modal-canvas-scroller">
+        <div class="font-24 font-600 color-354 line-h-26 text-align-center mt-25">
+          {{ "Changeemail" | translate }}
+        </div>
+        <!-- <div class="font-16 font-400 color-354 line-h-26 text-align-center mt-10">
+            {{ "otherNationMessage" | translate }}
+          </div> -->
+        
+          <form [formGroup]="changeEmailForm">
+            <div class="ng-row mt-46" justify-content-center>
+              <div class="ng-col" col-10 col-sm-12>
+                <div class="form-group">
+                  <label>{{"Newemail" | translate}}</label>
+                  <input type="email" value="" formControlName="email" placeholder="Please enter" (change)="checkEmail()">
+                  <div *ngIf="!this.EmailExist">
+                    <ng-container item-content *ngFor="let validation of errorKey.validation_messages.email">
+                      <span class="error-label"
+                        *ngIf="changeEmailForm.controls.email.hasError(validation.type) &&(changeEmailForm.controls.email.touched ||submitAttempt)">
+                        {{ getMessage(validation.key,'email') }}
+                      </span>
+                    </ng-container>
+                  </div>
+                  <span class="error-label" *ngIf="this.EmailExist">
+                    Email is already in use. Please choose another email
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+        <div class="ng-row mt-46 mb-25" justify-content-center>
+          <div class="ng-col" col-10 col-sm-12>
+            <button class="btn-dft-white" (click)="hidePopup()">{{"Cancel" | translate}}</button>
+            <button class="btn-dft mt-15" [disabled]="isSecondFormValid()" (click)="ChangeEmailPost()">{{"Change" | translate}}</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+</div>
+  

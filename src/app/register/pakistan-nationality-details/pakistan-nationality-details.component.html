@@ -1,0 +1,309 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-24 color-2f5 font-600 mt-5">
+        {{"Pakistannationalitydetails" | translate}}
+      </div>
+
+      <div class="font-14 color-354 font-400 mt-5">
+        {{"WeneedyourPakistanID" | translate}}
+      </div>
+
+      <form [formGroup]="RegistrationForm">
+        <div class="mt-46">
+          <app-attach-box [attachedHeading]="attachedHeading" (callParentFunction)="Idfrontfunction($event)" (callAnotherFunction)="RemoveFunction()">
+          </app-attach-box>
+        </div>
+        
+        <div class="mt-10 pb-20">
+          <app-attach-box [attachedHeading]="attachedHeading2" (callParentFunction)="Idbackfunction($event)" (callAnotherFunction)="RemoveFunction1()"></app-attach-box>
+        </div>
+        
+        <!-- <div [ngClass]="{'form-group mt-30 form-error': RegistrationForm.controls.IDNumber.hasError && RegistrationForm.controls.IDNumber.touched , 'form-group mt-30': RegistrationForm.controls.IDNumber.Untouched }"> -->
+          <div class="form-group mt-30">
+          <label>{{"IDNumber" | translate}}</label>
+          <input type="text" formControlName="IDNumber"  maxlength="15" minlength="13" value="" [mask]="this.cardmaask"
+            [placeholder]="this.cardPlaceHolder">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.IDNumber">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.IDNumber.hasError(validation.type) &&(RegistrationForm.controls.IDNumber.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'IDNumber') }}
+            </span>
+          </ng-container>
+        </div>
+
+
+        <div class="form-group mt-30">
+          <label>{{"FirstName" | translate}}</label>
+          <input type="text" value="" mask="S* S* S* S*" maxlength="20" minlength="3" formControlName="FirstName"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.FirstName">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.FirstName.hasError(validation.type) &&(RegistrationForm.controls.FirstName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'FirstName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"MiddleName" | translate}}</label>
+          <input type="text" value="" mask="S* S* S* S*" maxlength="20" formControlName="MiddleName"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.MiddleName">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.MiddleName.hasError(validation.type) &&(RegistrationForm.controls.MiddleName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'MiddleName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"LastName" | translate}}</label>
+          <input type="text" value="" formControlName="LastName" mask="S* S* S* S*" maxlength="20" minlength="3"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.LastName">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.LastName.hasError(validation.type) &&(RegistrationForm.controls.LastName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'LastName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"Gender" | translate}}</label>
+          <select formControlName="Gender">
+            <option hidden value="" disabled selected>Please select gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Gender">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.Gender.hasError(validation.type) &&(RegistrationForm.controls.Gender.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Gender') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"DateofBirth" | translate}}</label>
+        </div>
+
+        <div class="ng-row mt-5" justify-content-between>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DobdaySelect" required id="dobdayslist"  name="dobdayslist" formControlName="DobdaySelect" (change)="DobSelectionchange()"> <!--(change)="DobSelectionchange()"-->
+                <option hidden [ngValue]=null disabled selected>Date</option>
+                <option [ngValue]=a *ngFor="let a of this.dobdayslistArray">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DobdaySelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DobdaySelect.hasError(validation.type) &&(RegistrationForm.controls.DobdaySelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DobdaySelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col p-l-r" col-6 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DobMonthSelect" id="dobmonthlist"  name="dobmonthlist" formControlName="DobMonthSelect" (change)="DobSelectionchange()"> <!--(change)="DobSelectionchange()"-->
+                <option hidden [ngValue]=null disabled selected>Month</option>
+                <option [ngValue]=a.value *ngFor="let a of this.dobmonthlistArray">{{a.text}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DobMonthSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DobMonthSelect.hasError(validation.type) &&(RegistrationForm.controls.DobMonthSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DobMonthSelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DobYearSelect" formControlName="DobYearSelect" (change)="DobSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Year</option>
+                <option [ngValue]=a *ngFor="let a of this.dobmaxarray">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DobYearSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DobYearSelect.hasError(validation.type) &&(RegistrationForm.controls.DobYearSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DobYearSelect') }}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <span class="error-label" *ngIf="this.dobError">{{ "DateOfBirthError" | translate}}</span>
+        
+        <!-- <span class="error-label" *ngIf="dobdayslist.invalid && (dobdayslist.dirty || dobdayslist.touched)">{{ "DateOfBirthErrorDay" | translate}}</span> -->
+        <!-- <span class="error-label" *ngIf="this.dobErrormonth">{{ "DateOfBirthErrorMonth" | translate}}</span>
+        <span class="error-label" *ngIf="this.dobErroryear">{{ "DateOfBirthErrorYear" | translate}}</span> -->
+
+        <!-- <div class="form-group mt-30">
+          <label>{{"DateofBirth" | translate}}</label>
+          <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="MM/DD/YYYY" max="{{dobmax}}" formControlName="DOB"
+            [(ngModel)]="this.dob" placeholder="Please select" class="mt-15" [pickerOptions]="pickerOptions">
+          </ion-datetime>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DateofBirth">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.DOB.hasError(validation.type) &&(RegistrationForm.controls.DOB.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'DOB') }}
+            </span>
+          </ng-container>
+        </div> -->
+
+
+        <div class="form-group mt-30">
+          <label>{{"IDExpiry" | translate}}</label>
+        </div>
+  
+        <div class="ng-row mt-5" justify-content-between>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoedaySelect" id="doedayslist"  name="doedayslist" formControlName="DoedaySelect" (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Date</option>
+                <option [ngValue]=a *ngFor="let a of this.doedayslistArray">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoedaySelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DoedaySelect.hasError(validation.type) &&(RegistrationForm.controls.DoedaySelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoedaySelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col p-l-r" col-6 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoeMonthSelect" id="doemonthlist"  name="doemonthlist" formControlName="DoeMonthSelect" (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Month</option>
+                <option [ngValue]=a.value *ngFor="let a of this.doemonthlistArray">{{a.text}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoeMonthSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DoeMonthSelect.hasError(validation.type) &&(RegistrationForm.controls.DoeMonthSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoeMonthSelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoeYearSelect" formControlName="DoeYearSelect" (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Year</option>
+                <option [ngValue]=a *ngFor="let a of this.doeyears">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoeYearSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.DoeYearSelect.hasError(validation.type) &&(RegistrationForm.controls.DoeYearSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoeYearSelect') }}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <span class="error-label" *ngIf="this.doeError">{{ "DOEerror" | translate}}</span>
+
+
+        <!-- <div class="form-group mt-30">
+          <label>{{"IDExpiry" | translate}}</label>
+          <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="MM/DD/YYYY" min="{{doemin}}" max={{this.doemax}}
+            formControlName="DOE" [(ngModel)]="this.doe" placeholder="Please select" class="mt-15" [pickerOptions]="pickerOptions"></ion-datetime>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.IDExpiry">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.DOE.hasError(validation.type) &&(RegistrationForm.controls.DOE.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'DOE') }}
+            </span>
+          </ng-container>
+        </div> -->
+
+
+        <div class="form-group mt-30">
+          <label>{{"IssuanceDate" | translate}}</label>
+        </div>
+  
+        <div class="ng-row mt-5" justify-content-between>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.issuedaySelect" id="issuedayslist"  name="issuedayslist" formControlName="issuedaySelect" (change)="issueSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Date</option>
+                <option [ngValue]=a *ngFor="let a of this.doedayslistArray">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.issuedaySelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.issuedaySelect.hasError(validation.type) &&(RegistrationForm.controls.issuedaySelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'issuedaySelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col p-l-r" col-6 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.issueMonthSelect" id="issuemonthlist"  name="issuemonthlist" formControlName="issueMonthSelect" (change)="issueSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Month</option>
+                <option [ngValue]=a.value *ngFor="let a of this.issuemonthlistArray">{{a.text}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.issueMonthSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.issueMonthSelect.hasError(validation.type) &&(RegistrationForm.controls.issueMonthSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'issueMonthSelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.issueYearSelect" formControlName="issueYearSelect" (change)="issueSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Year</option>
+                <option [ngValue]=a *ngFor="let a of this.issuedateyears">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.issueYearSelect">
+              <span class="error-label"
+                *ngIf="RegistrationForm.controls.issueYearSelect.hasError(validation.type) &&(RegistrationForm.controls.issueYearSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'issueYearSelect') }}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <span class="error-label" *ngIf="this.IssueError">{{ "IssueError" | translate}}</span>
+
+
+        <!-- <div class="form-group mt-30">
+          <label>{{"IssuanceDate" | translate}}</label>
+          <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="MM/DD/YYYY" max={{this.issuemax}}
+            formControlName="Issuedate" [(ngModel)]="this.issuedate" placeholder="Please select" class="mt-15" [pickerOptions]="pickerOptions">
+          </ion-datetime>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.IDIssuance">
+            <span class="error-label"
+              *ngIf="RegistrationForm.controls.Issuedate.hasError(validation.type) &&(RegistrationForm.controls.Issuedate.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'IDIssuance') }}
+            </span>
+          </ng-container>
+        </div> -->
+
+        
+        <div class="form-group mt-46">
+          <!-- <button class="btn-dft-white" [disabled]="isFormValid()" (click)="Savedolater()">
+            {{"SaveDoLater" | translate}}
+          </button> -->
+          <button class="btn-dft mt-15" [disabled]="isFormValid()" (click)="RegisterUser()">
+            {{"Continue" | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Please Wait...</p>
+</ngx-spinner>

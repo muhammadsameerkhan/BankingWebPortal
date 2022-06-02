@@ -1,0 +1,29 @@
+@import 'import/variables.scss';
+
+.login-component {
+    .left-img {
+        width: 150px;
+        min-height: 584px;
+        height: 100%;
+        background: url("../images/left-img.png") no-repeat;
+        display: block;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+.email-component {
+    height: 545px;
+}
+
+@media screen and (max-width: 767px) {
+    .email-component {
+        height: auto;
+        .ng-row.height-100.pb-30 {
+            padding-bottom: 0 !important;
+        }
+        .ng-col.mb-20 {
+            margin-top: 30px;
+        }
+    }
+}

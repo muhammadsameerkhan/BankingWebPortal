@@ -1,0 +1,8 @@
+<div [ngClass]="status ? 'form-group custom-select active' : 'form-group custom-select'">
+    <input type="text" [value]="this.selectedValue" placeholder="Please select" readonly class="custom-select-input" (click)="showSelectDrop()">
+    <div class="custom-select-list">
+        <div class="custom-select-item" *ngFor="let selectValue of selectValues" (click)="selectListValue(selectValue.selectValueItem)">
+            {{selectValue.selectValueItem}}
+        </div>
+    </div>
+</div>

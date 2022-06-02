@@ -1,0 +1,36 @@
+.custom-select {
+    position: relative;
+    .custom-select-input {
+        cursor: pointer;
+        background: url("../../../assets/icons/arrow-down.svg") no-repeat right center #fff;
+    }
+    .custom-select-list {
+        position: absolute;
+        left: 0;
+        top: 32px;
+        transform: translateY(-100px);
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.3s ease;
+        width: 100%;
+        background: #fff;
+        font-size: 14px;
+        box-shadow: 0 0 5px #cbd5e0;
+        border-radius: 0 0 12px 12px;
+        .custom-select-item {
+            border-bottom: 1px solid #cbd5e0;
+            padding: 15px;
+            cursor: pointer;
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+    }
+    &.active {
+        .custom-select-list {
+            transform: translateY(0);
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}

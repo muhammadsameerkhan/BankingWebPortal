@@ -1,0 +1,310 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-24 color-2f5 font-600 mt-5">
+        {{"Tellusmoreaboutyourself" | translate}}
+      </div>
+
+      <div class="font-14 color-354 font-400 mt-5">
+        {{"Weneedtoknowabit" | translate}}
+      </div>
+
+      <form [formGroup]="newform">
+
+        <div class="form-group mt-30">
+          <label>{{"MothersMaidenName" | translate}}</label>
+          <input type="text" value="" formControlName="M_M_Name" placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Mother_M_name">
+            <span class="error-label"
+              *ngIf="newform.controls.M_M_Name.hasError(validation.type) &&(newform.controls.M_M_Name.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Mother_M_name') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"Countryofbirth" | translate}}</label>
+          <!-- <input type="text" value="" formControlName="CountryOB" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20"> -->
+          <select formControlName="CountryOB" (change)="Countryofbirthselect()" >
+            <option hidden value="" disabled selected >Please select</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countriescitylist">{{a.countryName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.country">
+            <span class="error-label"
+              *ngIf="newform.controls.CountryOB.hasError(validation.type) &&(newform.controls.CountryOB.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'country') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <!-- <div class="form-group mt-30" > *ngIf="this.countryofbirth"
+          <label>{{"CityOfBirth" | translate}}</label>
+          <input type="text" value="" formControlName="CityOB" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <select formControlName="CityOB">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.cityId" *ngFor="let a of this.citycountrylist">{{a.cityName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.city">
+            <span class="error-label"
+              *ngIf="newform.controls.CityOB.hasError(validation.type) &&(newform.controls.CityOB.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'city') }}
+            </span>
+          </ng-container>
+        </div> -->
+
+        <div class="form-group mt-30">
+          <label>{{"AreyouPoliticallyexposedperson" | translate}}</label>
+          <select formControlName="Pep" (change)="OnSelect()">
+            <option hidden value="" disabled selected>Please select</option>
+            <option value=0>No</option>
+            <option value=1>Yes</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.pepexpose">
+            <span class="error-label"
+              *ngIf="newform.controls.Pep.hasError(validation.type) &&(newform.controls.Pep.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'FirstName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="!this.check">
+          <label>{{"Areyourrelativespouse" | translate}}</label>
+          <select formControlName="PepRelative" (change)="peprel()">
+            <option hidden [ngValue]="null" disabled selected>Please select</option>
+            <option value=0>No</option>
+            <option value=1>Yes</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.PepRelative">
+            <span class="error-label"
+              *ngIf="newform.controls.PepRelative.hasError(validation.type) &&(newform.controls.PepRelative.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'PepRelative') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"FrequencyofStatements" | translate}}</label>
+          <select formControlName="Frequency">
+            <option hidden value="" disabled selected >Please select</option>
+            <option [ngValue]="a.strCode" *ngFor="let a of this.frequencyofstatements">{{a.strCode}}</option>
+          </select>
+          <div class="hint-text">
+            {{"Yourbankstatementwill" | translate}}
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Frequency">
+            <span class="error-label"
+              *ngIf="newform.controls.Frequency.hasError(validation.type) &&(newform.controls.Frequency.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Frequency') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"ResAddressLine1" | translate}}</label>
+          <input type="text" value="" formControlName="ResAddress1"  maxlength="50" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.ResAddress1">
+            <span class="error-label"
+              *ngIf="newform.controls.ResAddress1.hasError(validation.type) &&(newform.controls.ResAddress1.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'ResAddress1') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"ResAddressLine2" | translate}}</label>
+          <input type="text" value="" formControlName="ResAddress2" maxlength="50" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.ResAddress2">
+            <span class="error-label"
+              *ngIf="newform.controls.ResAddress2.hasError(validation.type) &&(newform.controls.ResAddress2.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'ResAddress2') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"Country" | translate}}</label>
+          <!-- <input type="text" value="" formControlName="CountryORes" [(ngModel)]="this.CountryName"
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20"> -->
+          <select  formControlName="CountryORes" (change)="CountryOresselect()" >
+            <option hidden [ngValue]=null disabled selected >{{this.CountryNameAutoFill}}</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countrieslistofres">{{a.countryName}}</option>
+          </select>
+          <!-- <ng-container item-content *ngFor="let validation of errorKey.validation_messages.country">
+            <span class="error-label"
+              *ngIf="newform.controls.CountryORes.hasError(validation.type) &&(newform.controls.CountryORes.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'country') }}
+            </span>
+          </ng-container> -->
+        </div>
+
+        <div class="form-group mt-30" > <!--*ngIf="this.CounORescheck"-->
+          <label>{{"State" | translate}}</label>
+          <input type="text" value="" formControlName="StateORes" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <!-- <select formControlName="StateORes" (change)="StateofResCheck()">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.stateId" *ngFor="let a of this.statelistofres">{{a.stateName}}</option>
+          </select> -->
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.State">
+            <span class="error-label"
+              *ngIf="newform.controls.StateORes.hasError(validation.type) &&(newform.controls.StateORes.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'State') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" > <!--*ngIf="this.StateofresCheck"-->
+          <label>{{"City" | translate}}</label>
+          <input type="text" value="" formControlName="CityORes" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <!-- <select formControlName="CityORes" (change)="cityoresselected()">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.cityId" *ngFor="let a of this.citylistofres">{{a.cityName}}</option>
+          </select> -->
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.city">
+            <span class="error-label"
+              *ngIf="newform.controls.CityORes.hasError(validation.type) &&(newform.controls.CityORes.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'city') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" > <!--*ngIf="this.Cityofrescheck"-->
+          <label>{{"Postcode" | translate}}</label>
+          <input type="text" value="" formControlName="PostCodeORes" maxlength="10" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.postalCode">
+            <span class="error-label"
+              *ngIf="newform.controls.PostCodeORes.hasError(validation.type) &&(newform.controls.PostCodeORes.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'postalCode') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class=" form-group ng-row mt-30">
+          <div class="ng-col" col-9>
+            <div class="font-16 font-600 color-354">
+              {{"Mailing&CurrentAddressdiffer" | translate}}
+            </div>
+          </div>
+          <div class="ng-col text-align-right" col-3>
+            <ion-toggle [(ngModel)]=this.IsAddressdiffer  [ngModelOptions]="{standalone: true}" mode="ios" (ionChange)="addressdifferchange($event)"></ion-toggle>
+          </div>
+        </div>
+        <!-- <div class="form-group mt-30">
+          <label>{{"Mailing&CurrentAddressdiffer" | translate}}</label>
+          <select formControlName="Addressdiffer" (change)="Onchange()">
+            <option hidden value="" disabled selected>Please select</option>
+            <option value=0>No</option>
+            <option value=1>Yes</option>
+          </select> -->
+          <!-- <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Addressdiffer">
+            <span class="error-label"
+              *ngIf="newform.controls.Addressdiffer.hasError(validation.type) &&(newform.controls.Addressdiffer.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Addressdiffer') }}
+            </span>
+          </ng-container> -->
+        <!-- </div> -->
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"MailAddressline1" | translate}}</label>
+          <input type="text" value="" formControlName="MailAddress1" maxlength="50" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.MailAddress1">
+            <span class="error-label"
+              *ngIf="newform.controls.MailAddress1.hasError(validation.type) &&(newform.controls.MailAddress1.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'MailAddress1') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"MailAddressline2" | translate}}</label>
+          <input type="text" value="" formControlName="MailAddress2" maxlength="50" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.MailAddress2">
+            <span class="error-label"
+              *ngIf="newform.controls.MailAddress2.hasError(validation.type) &&(newform.controls.MailAddress2.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'MailAddress2') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"Country" | translate}}</label>
+          <!-- <input type="text" value="" formControlName="CountryOMail" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20"> -->
+          <select formControlName="CountryOMail" (change)="counofmailselect()">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countrieslistofmail">{{a.countryName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.country">
+            <span class="error-label"
+              *ngIf="newform.controls.CountryOMail.hasError(validation.type) &&(newform.controls.CountryOMail.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'country') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"State" | translate}}</label>
+          <input type="text" value="" formControlName="StateOMail" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <!-- <select formControlName="StateOMail" (change)="stateofmailselect()">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.stateId" *ngFor="let a of this.statelistofmail">{{a.stateName}}</option>
+          </select> -->
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.State">
+            <span class="error-label"
+              *ngIf="newform.controls.StateOMail.hasError(validation.type) &&(newform.controls.StateOMail.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'State') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"City" | translate}}</label>
+          <input type="text" value="" formControlName="CityOMail" 
+            placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <!-- <select formControlName="CityOMail" (change)="Cityofmailselect()">
+            <option hidden [ngValue]=null disabled selected >Please select</option>
+            <option [ngValue]="a.cityId" *ngFor="let a of this.citylistofmail">{{a.cityName}}</option>
+          </select> -->
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.city">
+            <span class="error-label"
+              *ngIf="newform.controls.CityOMail.hasError(validation.type) &&(newform.controls.CityOMail.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'city') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30" *ngIf="this.IsAddressdiffer">
+          <label>{{"Postcode" | translate}}</label>
+          <input type="text" value="" formControlName="PostCodeOMail" maxlength="10" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.postalCode">
+            <span class="error-label"
+              *ngIf="newform.controls.PostCodeOMail.hasError(validation.type) &&(newform.controls.PostCodeOMail.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'postalCode') }}
+            </span>
+          </ng-container>
+        </div>
+
+      </form>
+
+      
+
+      <div class="form-group mt-46">
+        <button class="btn-dft-white" [disabled]="isFormValid()" (click)="formpostdolater()">
+          {{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" (click)="formpost()" [disabled]="isFormValid()"
+          >{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

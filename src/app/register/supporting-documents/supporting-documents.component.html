@@ -1,0 +1,123 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-30 color-2f5 font-600 mt-5">
+        {{"Supportingdocuments" | translate}}
+      </div>
+
+      <div class="font-18 color-354 font-400 mt-5">
+        {{"Pleaseuploadthenecessary" | translate}}
+      </div>
+
+      <div class="mt-46" *ngFor="let a of this.config; index as i">
+
+        
+      <!-- </div>
+
+      <div class="mt-46" *ngFor="let a of this.Array2; index as i"> -->
+
+        <div class="border border-color-e1e br-12 bg-white pd" *ngIf="a.listofadddoc.length > 1">
+          <div class="ng-row p-l-r" justify-content-between>
+
+            <div class="ng-col" col-12>
+              <div class="font-18 font-600 color-354">
+                {{a.listofadddoc[0].labelEn}}
+              </div>
+            </div>
+
+            <div class="ng-col" col-12 *ngIf='!this.SelectedOption'>
+              <div class="form-group mt-15">
+                <label>{{"DocumentType" | translate}}</label>
+                <select [(ngModel)]="this.SelectedOption">
+                  <option hidden [ngValue]="null" disabled selected>Select Document Type</option>
+                  <option [ngValue]="b" *ngFor="let b of a.listofadddoc" >{{b.documentType}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ng-col" col-8 col-sm-12 *ngIf='this.SelectedOption'>
+              <div class="form-group mt-15">
+                <label>{{"DocumentType" | translate}}</label>
+                <select [(ngModel)]="this.SelectedOption">
+                  <option hidden [ngValue]="null" disabled selected>Select Document Type</option>
+                  <option [ngValue]="b" *ngFor="let b of a.listofadddoc" >{{b.documentType}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ng-col" col-auto col-sm-12 *ngIf="this.SelectedOption">
+              <div class="custom-file-uploader mt-25">
+                <input type="file" id="i" #takeinput (change)="SavingImage($event,i)" />
+                <label for=i *ngIf="!isImageSaved">Attach</label>
+                <label id='sa' *ngIf="isImageSaved" (click)=showPopup() class="active">View</label>
+                <!-- <a class="btn btn-danger" (click)="removeImage1()" *ngIf="isImageSaved">Remove</a> -->
+              </div>
+            </div>
+            <!-- [innerHTML]="[0].description" -->
+            <div class="ng-col" col-12 [innerHTML]="a.listofadddoc[0].description" *ngIf=!this.imageError>
+            </div>
+            <div class="ng-col mt-20 " col-08 *ngIf=this.imageError>
+              <div class=" font-14 color-red">
+                {{ imageError | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10" *ngIf="a.listofadddoc.length == 1">
+          <app-attach-box [attachedHeading]="a.listofadddoc[0].labelEn" [attachedText]="a.listofadddoc[0].description" (callAnotherFunction)="RemoveFunction(a)" (callParentFunction)="PostToTempImage($event,a)">
+            </app-attach-box>
+          </div>
+      </div>
+
+      <div class="form-group mt-46">
+        <button class="btn-dft-white" [disabled]="isFormValid()" (click)="formpostdolater()">
+          {{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" (click)="formpost()" [disabled]="isFormValid()"
+          >{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="custom-modal auto-resize" #modal>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <!-- <div class="custom-modal-close">
+      <i class="icon-close-black" (click)="hidePopup()"></i>
+    </div> -->
+    <div class="custom-modal-canvas-scroller">
+      <div>
+        <!-- <img id="imageid" alt=""> -->
+      </div>
+
+      <!-- <div class="custom-modal-img-box">
+        <img id="ok" #imageid alt="" width="auto">
+      </div> -->
+      <div class="custom-modal-img-box">
+        <img id="ok" #imageid alt="" width="auto">
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-modal-footer">
+    <div class="ng-row" justify-content-center>
+      <div class="ng-col pd" col-auto>
+        <button class="btn-dft-white" (click)="removeImage1()">
+          {{'Delete' | translate}}
+        </button>
+      </div>
+        <div class="ng-col pd" col-auto>
+          <button class="btn-dft" (click)="hidePopup()">
+            {{'Close' | translate}}
+          </button>
+        </div>
+    </div>
+  </div>
+</div>

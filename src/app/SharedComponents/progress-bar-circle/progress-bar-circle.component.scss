@@ -1,0 +1,15 @@
+.progress-bar {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    .center-value {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 16px;
+        font-weight: bold;
+        color: #989898;
+        margin-top: 1px;
+    }
+}

@@ -1,0 +1,65 @@
+//========= Font Family
+// Arabic Font ======
+// Arabic Font ======
+
+// English Font ======
+$font-en: "Axiforma";
+// English Font ======
+
+//========= Sizes in VW instead of PX
+$size-5: 0.3125rem;
+$size-8: 0.5rem;
+$size-10: 0.625rem;
+$size-12: 0.75rem;
+$size-14: 0.875rem;
+$size-15: 0.9375rem;
+$size-16: 1rem;
+$size-18: 1.125rem;
+$size-20: 1.25rem;
+$size-23: 1.4375rem;
+$size-24: 1.5rem;
+$size-25: 1.5625rem;
+$size-27: 1.6875rem;
+$size-30: 1.875rem;
+$size-32: 2rem;
+$size-35: 2.1875rem;
+$size-40: 2.5rem;
+$size-42: 2.625rem;
+$size-46: 2.875rem;
+$size-64: 4rem;
+$size-80: 5rem;
+$size-123: 7.6875rem;
+
+@media (max-width: 767px){
+    html{
+        font-size: 16px;
+    }
+}
+@media (max-width: 360px){
+    html{
+        font-size: 14px;
+    }
+}
+@media (max-width: 320px){
+    html{
+        font-size: 11px;
+    }
+}
+
+//========= Color Codes
+$color-white: #fff;
+$color-eee: #EEEEEE;
+$color-2F5: #2F5C37;
+$color-CBD: #CBD5E0;
+$color-2D3: #2D3748;
+$color-A0A: #A0AEC0;
+$color-931: #931E2D;
+$color-6F2: #6F2A31;
+$color-357: #357B4C;
+$color-354: #354F52;
+$color-E1E: #E1E1E1;
+$color-718: #718096;
+$color-F6F: #F6F7F7;
+$color-08A: #08A956;
+$color-08A: #08A956;
+$color-505: #50555C;

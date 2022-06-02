@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46">
+  <div class="ng-row">
+    <div class="ng-col hide-on-mob" col-3>
+      <div class="left-img"></div>
+    </div>
+    <div class="ng-col pt-20 pd-sm-30" col-6 col-sm-12>
+      <div class="logo mt-15">
+        <img src="../assets/images/logo-roshan.svg" alt="">
+      </div>
+
+      <div class="font-24 color-2f5 font-600 mt-10">
+        {{"WelcometoDIBRoshan" | translate}}
+      </div>
+
+      <div class="font-16 color-2f5 font-400 mt-5">
+        {{"PleaseLogintocomplete" | translate}}
+      </div>
+
+      <form [formGroup]="registerForm">
+        <!-- id='textboxes' (keydown)="Enter($event)" -->
+        <div class="form-group mt-20">
+          <label>{{"Email" | translate}}</label>
+          <input type="email" [(ngModel)]="_email" formControlName="email" placeholder="Enter email">
+          <!-- id="formtext" -->
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.email">
+            <span class="error-label"
+              *ngIf="registerForm.controls.email.hasError(validation.type) &&(registerForm.controls.email.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'email') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30 password-eye">
+          <label>{{"Password" | translate}}</label>
+          <input [type]="passwordType" [(ngModel)]="_password" formControlName="password" placeholder="Enter password">
+          <i class="icon-eye" #eyeIcon (click)="showPassword()"></i>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.password">
+            <span class="error-label"
+              *ngIf="registerForm.controls.password.hasError(validation.type) &&(registerForm.controls.password.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'password') }}
+            </span>
+          </ng-container>
+        </div>
+      </form>
+      <div class="form-group mt-30">
+        <button class="btn-dft" [disabled]="isFormValid()" (click)="Login()">{{"Login" | translate}}</button>
+      </div>
+      
+      <div class="form-group mt-10 mb-25">
+        <button class="btn-dft-white" (click)="Signupfunc()"
+          [routerLink]="['/register/LoginDetails']">{{"SignUp" | translate}}</button>
+      </div>
+
+      <!-- <button class="btn-dft" routerLink="/CurrencyExchangeRate">{{"Login" | translate}}</button> -->
+      
+
+      <!-- <div class="form-group mt-10">
+                <button class="btn-dft-white" [routerLink]="['/error503']">{{"SignUp" | translate}}</button>
+           </div> -->
+    </div>
+  </div>
+</div>

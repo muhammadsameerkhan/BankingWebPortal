@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-30 color-2f5 font-600 mt-5">
+        {{"Yourforeignbankdetails" | translate}}
+      </div>
+
+      <div class="font-18 color-354 font-400 mt-5">
+        {{"Weneedexistingbankaccountdetails" | translate}}
+      </div>
+      
+      <form [formGroup]="newform">
+
+        <div class="form-group mt-30">
+          <label>{{"AccountTitleName" | translate}}</label>
+          <input type="text" value="" formControlName="AccountTitleName" minlength="3" maxlength="40" mask="S* S* S* S*" placeholder="Please enter" mask="S* S* S* S*" maxlength="20">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Acctitle">
+            <span class="error-label"
+              *ngIf="newform.controls.AccountTitleName.hasError(validation.type) &&(newform.controls.AccountTitleName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Acctitle') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"IBAN" | translate}}</label>
+          <input type="text" value="" formControlName="IBAN" minlength="3" maxlength="35" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.iban">
+            <span class="error-label"
+              *ngIf="newform.controls.IBAN.hasError(validation.type) &&(newform.controls.IBAN.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'iban') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"BankName" | translate}}</label>
+          <input type="text" value="" formControlName="BankName" mask="S* S* S* S*" minlength="3" maxlength="40" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.bankname">
+            <span class="error-label"
+              *ngIf="newform.controls.BankName.hasError(validation.type) &&(newform.controls.BankName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'bankname') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"Country" | translate}}</label>
+          <select formControlName="Country">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countrieslist">{{a.countryName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.country">
+            <span class="error-label"
+              *ngIf="newform.controls.Country.hasError(validation.type) &&(newform.controls.Country.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'country') }}
+            </span>
+          </ng-container>
+        </div>
+      </form>
+
+      <div class="form-group mt-46">
+        <button class="btn-dft-white" [disabled]="isFormValid()" (click)="formpostdolater()">
+          {{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" (click)="formpost()"
+          [disabled]="isFormValid()">{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

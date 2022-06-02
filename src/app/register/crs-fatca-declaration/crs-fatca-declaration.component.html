@@ -1,0 +1,464 @@
+<app-header></app-header>
+
+<div class="container abc-component mt-46">
+  <div class="ng-row height-100">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-30 color-2f5 font-600 mt-5">
+        {{"CRSFATCAdeclaration" | translate}}
+      </div>
+
+      <div class="font-18 color-354 font-400 mt-15">
+        {{"Pleaseprovidethedetails" | translate}}
+      </div>
+
+      <div class="font-18 color-2d3 font-600 mt-25">
+        {{"PleaseDownloadCRSFormbelow" | translate}}
+      </div>
+
+      <form [formGroup]="newform">
+
+
+        <div class="mt-32">
+          <app-attach-box2 attached2Heading="CRS Declaration Form" attached2Text="Download CRS form"
+            attached2Link="../../../assets/CRS-form-Individual.pdf" PDFName="CRSFORM"
+            [AttachedPDFLink]="this.AttachedPDFLink" (CallParentFunction)="ParentFunction($event)"
+            (CallAnotherFunction)="AnotherFunction($event)">
+          </app-attach-box2>
+        </div>
+
+        <div class="form-group mt-30">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"AreyouaUSResidentUSCitizen" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-1" [(ngModel)]="US1" *ngIf="this.Response1check"
+                  [ngModelOptions]="{standalone: true}" disabled>
+                <input type="radio" value="1" id="label-1" formControlName="Res_USResident_Citizen"
+                  (change)=checkformPermision()>
+                <label for="label-1" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-2" *ngIf="this.Response1check" disabled>
+                <input type="radio" value="0" id="label-2" formControlName="Res_USResident_Citizen"
+                  (change)=checkformPermision()>
+                <label for="label-2" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_USResident_Citizen.hasError(validation.type) && (newform.controls.Res_USResident_Citizen.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"DoyouhaveaUSBirthplace" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-3" [(ngModel)]="US2" *ngIf="this.Response2check"
+                  [ngModelOptions]="{standalone: true}" disabled>
+                <input type="radio" value="1" id="label-3" formControlName="Res_USBirthPlace"
+                  (change)=checkformPermision()>
+                <label for="label-3" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-4" *ngIf="this.Response2check" disabled>
+                <input type="radio" value="0" id="label-4" formControlName="Res_USBirthPlace"
+                  (change)=checkformPermision()>
+                <label for="label-4" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_USBirthPlace.hasError(validation.type) &&(newform.controls.Res_USBirthPlace.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"DoyouhaveaUSresidence" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-5" [(ngModel)]="US3" *ngIf="this.Response3check"
+                  [ngModelOptions]="{standalone: true}" disabled>
+                <input type="radio" value="1" id="label-5" formControlName="Res_US_Res_Add"
+                  (change)=checkformPermision()>
+                <label for="label-5" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-6" *ngIf="this.Response3check" disabled>
+                <input type="radio" value="0" id="label-6" formControlName="Res_US_Res_Add"
+                  (change)=checkformPermision()>
+                <label for="label-6" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_US_Res_Add.hasError(validation.type) &&(newform.controls.Res_US_Res_Add.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"DoyouhaveaUStelephone" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-7" formControlName="Res_US_Tel_Num"
+                  (change)=checkformPermision()>
+                <label for="label-7" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-8" formControlName="Res_US_Tel_Num"
+                  (change)=checkformPermision()>
+                <label for="label-8" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_US_Tel_Num.hasError(validation.type) &&(newform.controls.Res_US_Tel_Num.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"Doyouhaveinstructionsto" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-9" formControlName="Res_Recv_Funds"
+                  (change)=checkformPermision()>
+                <label for="label-9" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-10" formControlName="Res_Recv_Funds"
+                  (change)=checkformPermision()>
+                <label for="label-10" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_Recv_Funds.hasError(validation.type) &&(newform.controls.Res_Recv_Funds.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"Doyouhaveanaddressonfile" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-11" formControlName="Res_Add_PO_Box"
+                  (change)=checkformPermision()>
+                <label for="label-11" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-12" formControlName="Res_Add_PO_Box"
+                  (change)=checkformPermision()>
+                <label for="label-12" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_Add_PO_Box.hasError(validation.type) &&(newform.controls.Res_Add_PO_Box.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="font-16 font-600 color-2d3">{{"Doyouhaveapowerofattorney" | translate}}</div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-13" formControlName="Res_Attrny_US"
+                  (change)=checkformPermision()>
+                <label for="label-13" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-14" formControlName="Res_Attrny_US"
+                  (change)=checkformPermision()>
+                <label for="label-14" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_Attrny_US.hasError(validation.type) &&(newform.controls.Res_Attrny_US.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-42" *ngIf="this.Reponse1to7YesAny">
+          <div class="ng-row">
+            <div class="ng-col mb-10" col-12>
+              <div class="ng-row">
+                <div class="ng-col" col-10>
+                  <div class="font-16 font-600 color-2d3">{{"AreuaUSperson?" | translate}}</div>
+                </div>
+                <div class="ng-col text-align-right" col-2 (click)="showPopup()">
+                  <i class="icon-info-small mt-5"></i>
+                </div>
+              </div>
+            </div>
+            <div class="ng-col" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="1" id="label-17" formControlName="IsUsPerson" (change)=checkformPermision()>
+                <label for="label-17" class="color-black pt-5 pl-35">
+                  {{"Yes" | translate}}
+                </label>
+              </div>
+            </div>
+            <div class="ng-col pl-15" col-2 col-sm-3>
+              <div class="custom-checkbox">
+                <input type="radio" value="0" id="label-18" formControlName="IsUsPerson" (change)=checkformPermision()>
+                <label for="label-18" class="color-black pt-5 pl-35">
+                  {{"No" | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.response">
+            <span class="error-label"
+              *ngIf="newform.controls.Res_Attrny_US.hasError(validation.type) &&(newform.controls.Res_Attrny_US.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'response') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="mt-10" *ngIf="this.usperson">
+
+          <div class="font-16 color-2d3 font-600 mt-46">
+            {{"IfyouselectYesbetween" | translate}}
+          </div>
+
+          <div class="mt-32">
+            <app-attach-box2 attached2Heading="W-9 Forms" attached2Text="Download W-9 form"
+              attached2Link="../../../assets/W9-NEW.pdf" PDFName="W9FORM"
+              description="Request for Taxpayer Identification Number and Certification"
+              (CallParentFunction)="ParentFunction($event)" (CallAnotherFunction)="AnotherFunction($event)">
+            </app-attach-box2>
+          </div>
+
+        </div>
+
+        <div class="mt-10" *ngIf="this.uspersonnot">
+
+          <div class="font-16 color-2d3 font-600 mt-46">
+            {{"IfyouselectYesbetween47" | translate}}
+          </div>
+
+          <div class="mt-32">
+            <app-attach-box2 attached2Heading="W-8BEN Forms" attached2Text="Download W-8BEN form"
+              attached2Link="../../../assets/W8-BEN.PDF" PDFName="W8BENFORM"
+              description="Certificate of Foreign Status of Beneficial Owner for United States Tax Withholding and Reporting (Individuals)"
+              (CallParentFunction)="ParentFunction($event)" (CallAnotherFunction)="AnotherFunction($event)">
+            </app-attach-box2>
+          </div>
+
+        </div>
+
+        <div class="form-group mt-42 custom-checkbox">
+          <input type="checkbox" value="1" id="label-01" [(ngModel)]="this.terms" (change)=checkformPermision()
+            [ngModelOptions]="{standalone: true}">
+          <label for="label-01" class="pt-0 line-h-20">
+            {{"IconfirmedmyFATCA" | translate}}
+          </label>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.ConfirmTerms">
+            <span class="error-label"
+              *ngIf="newform.controls.ConfirmTerms.hasError(validation.type) && (newform.controls.ConfirmTerms.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'ConfirmTerms') }}
+            </span>
+          </ng-container>
+        </div>
+      </form>
+
+      <div class="form-group mt-42 pt-30 mb-20">
+        <button class="btn-dft-white" [disabled]="isFormValid()" (click)="formpostdolater()">
+          {{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" (click)="formpost()"
+          [disabled]="isFormValid()">{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="custom-modal text-modal" #modal>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <div class="custom-modal-close">
+      <i class="icon-close-black" (click)="hidePopup()"></i>
+    </div>
+    <div class="custom-modal-canvas-scroller">
+      <div class="font-24 font-600 color-354 line-h-26">
+          {{"AreyouaUSperson" | translate}}
+      </div>
+      <div class="font-16 font-400 color-354 line-h-26 mt-10">
+        {{"DefinitionofaUS" | translate}}
+      </div>
+
+      <div class="dot-text-list">
+        <ul>
+          <li>
+            <div class="font-16 font-400 color-354 line-h-26">
+              {{"Anindividualwho" | translate}}
+            </div>
+          </li>
+          <li>
+            <div class="font-16 font-400 color-354 line-h-26">
+              {{"Apartnershipcorporation" | translate}}
+            </div>
+          </li>
+          <li>
+            <div class="font-16 font-400 color-354 line-h-26">
+              {{"Anestate" | translate}}
+            </div>
+          </li>
+          <li>
+            <div class="font-16 font-400 color-354 line-h-26">
+              {{"Adomestic" | translate}}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="custom-modal full-width full-height-on-mob" #modal2>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <div class="custom-modal-close">
+      <i class="icon-close-black" (click)="hidePopup()"></i>
+    </div>
+    <div class="custom-modal-canvas-scroller">
+      <div class="ng-row mt-32" justify-content-center>
+        <div class="ng-col" col-9 col-sm-12>
+          <div class="font-24 font-600 color-2f5 line-h-32">
+            {{"AccountActivationPreference" | translate}}
+          </div>
+          <div class="font-14 font-400 color-354 line-h-26 mt-10">
+            {{"Inordertoactivate" | translate}}
+          </div>
+    
+          <div class="font-12 font-600 color-2D3 line-h-16 mt-20 mb-10">
+            {{"SelectYourPreference" | translate}}
+          </div>
+
+          <div class="custom-select-box ng-row mb-15" align-item-center (click)="customSelectBoxBtn(1)" [ngClass]="customSelectBox == 1 ? 'active':''">
+            <div class="ng-col" col-auto>
+              <div class="icon-box">
+                <i  class="icon-mobile"></i>
+              </div>
+            </div>
+            <div class="ng-col p-l-r" col-10 col-sm-9 col-xs-8>
+                <div class="font-16 font-600 color-354 line-h-26">
+                  {{"Proceedtodownload" | translate}}
+                  
+                </div>
+            </div>
+          </div>
+
+          <div class="custom-select-box ng-row" align-item-center (click)="customSelectBoxBtn(2)" [ngClass]="customSelectBox == 2 ? 'active':''">
+            <div class="ng-col" col-auto>
+              <div class="icon-box">
+                <i  class="icon-dekstop"></i>
+              </div>
+            </div>
+            <div class="ng-col p-l-r" col-10 col-sm-9 col-xs-8>
+                <div class="font-16 font-600 color-354 line-h-26">
+                  {{"ProceedwithWebsite" | translate}}
+                  
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ng-row mt-25 mb-32" justify-content-center>
+        <div class="ng-col" col-6 col-sm-12>
+          <button class="btn-dft">
+            {{"Proceed" | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

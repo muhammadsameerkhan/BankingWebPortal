@@ -1,0 +1,13 @@
+.circle-icon {
+    width: 48px;
+    height: 48px;
+    border: 1.2px solid #E4CED0;
+    position: relative;
+    border-radius: 100%;
+    i {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

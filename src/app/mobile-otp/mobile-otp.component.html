@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<div class="container email-component mt-46">
+  <div class="ng-row height-100">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="ng-row height-100 pb-30" align-content-between>
+        <div class="ng-col">
+          <div class="font-30 color-2f5 font-600 mt-5">
+            {{"Mobileonetimepasscode" | translate}}
+          </div>
+
+          <div class="font-18 color-2f5 font-600 mt-15">
+            {{"AonetimePasswordhasbeen" | translate}} +{{ getNumber(numbertext) }}
+          </div>
+
+          <!-- <div class="font-14 color-2f5 font-400 mt-15">
+                        {{"Pleaseentertheverificationcodesentto" | translate}} <div></div>
+                    </div> -->
+          <form class="bg-f6f7" [formGroup]="registerForm">
+            <div class="form-group mt-30">
+              <label>{{"MobileVerificationCode" | translate}}</label>
+              <input type="text" mask="999999" value="" [(ngModel)]="code" formControlName="otp"
+                placeholder="6-digit code">
+              <ng-container item-content *ngFor="let validation of errorKey.validation_messages.otp">
+                <span class="error-label"
+                  *ngIf="registerForm.controls.otp.hasError(validation.type) &&(registerForm.controls.otp.touched ||submitAttempt)">
+                  {{ getMessage(validation.key,'otp') }}
+                </span>
+              </ng-container>
+            </div>
+
+          </form>
+
+          <div class="font-14 color-2f5 font-600 mt-15">
+            <span (click)="showPopup()" class="link">
+              {{"Changemobile" | translate}} ?
+            </span>
+          </div>
+        </div>
+
+        <div class="ng-col mb-20">
+          <div class="form-group mt-15">
+            <button class="btn-dft-white" disabled *ngIf="!this.resendOptbtnShow" (click)="SendAgain()">
+              {{'Resendcodein' | translate}} {{timerexpire}}
+            </button>
+            <button class="btn-dft-white" *ngIf="this.resendOptbtnShow" (click)="SendAgain()">
+              {{"Senditagain" | translate}}
+            </button>
+          </div>
+
+          <div class="form-group mt-15">
+            <button class="btn-dft" [disabled]="isFormValid()" (click)="Next()">
+              {{"Continue" | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="custom-modal min-width" #modal>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <div class="custom-modal-close">
+      <i class="icon-close-black" (click)="hidePopup()"></i>
+    </div>
+    <div class="custom-modal-canvas-scroller">
+      <div class="font-24 font-600 color-354 line-h-26 text-align-center mt-25">
+        {{ "Changemobile" | translate }}
+      </div>
+      <!-- <div class="font-16 font-400 color-354 line-h-26 text-align-center mt-10">
+            {{ "otherNationMessage" | translate }}
+          </div> -->
+          <form [formGroup]="SecondForm">
+            <div class="ng-row mt-46" justify-content-center>
+              <div class="ng-col" col-10 col-sm-12>
+                <div class="form-group mt-30">
+                  <label>{{"Newmobilenumber" | translate}}</label>
+                  <div class="ng-row">
+                    <div class="ng-col" col-3 col-sm-5>
+                      <div class="custom-dropdown" #customDropdownList>
+                        <div class="custom-dropdown-backdrop" (click)="closeDropdown()"></div>
+                        <div class="selected-box" (click)="showDropList()" *ngIf='this.mobilelistrender'>
+                          <img [src]="this.selectedIcon" width="20" height="20">
+                          <input type="text" readonly [value]="this.selectedDropNumber" class="custom-select">
+                        </div>
+                        <div class="list-item-box custom-scrollbar" *ngIf='this.mobilelistrender'>
+                          <div class="list-item" *ngFor="let a of this.mobilelist" (click)="selectDropVal(a)">
+                            <img [src]="'assets/svg-flags/'+a.flagClass+'.svg'" width="20" height="20" >
+                            <div class="num">+ {{a.mobileCode}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ng-col pl-10" col-12 *ngIf='!this.mobilelistrender'>
+                      <input formControlName="newmobile" type="text" [mask]="mask" [(ngModel)]="this._number"
+                        [placeholder]="numberPlaceHolder" [maxlength]="this.mobilemaxlength" [minlength]="this.mobileminlength">
+                    </div>
+                    <div class="ng-col pl-10" col-9 col-sm-7 *ngIf='this.mobilelistrender'>
+                      <input formControlName="newmobile" type="text" [mask]="mask" [(ngModel)]="this._number"
+                        [placeholder]="numberPlaceHolder" [maxlength]="this.mobilemaxlength" [minlength]="this.mobileminlength">
+                    </div>
+                  </div>
+                  <ng-container item-content *ngFor="let validation of errorKey.validation_messages.newmobile">
+                    <span class="error-label"
+                      *ngIf="SecondForm.controls.newmobile.hasError(validation.type) &&(SecondForm.controls.newmobile.touched ||submitAttempt)">
+                      {{ getMessage(validation.key,'newmobile') }}
+                    </span>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </form>
+
+      <div class="ng-row mt-46 mb-25" justify-content-center>
+        <div class="ng-col" col-10 col-sm-12>
+          <button class="btn-dft-white" (click)="hidePopup()">{{"Cancel" | translate}}</button>
+          <button class="btn-dft mt-15" [disabled]="isSecondFormValid()" (click)="ChangeMobilePost()">{{"Change" | translate}}</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,215 @@
+<app-header></app-header>
+
+<div class="container login-component mt-46 pb-20">
+  <div class="ng-row">
+    <div class="ng-col" col-3 col-sm-12>
+      <app-progress-bar-circle [counter]="counter" [current]="current" [max]="max"></app-progress-bar-circle>
+    </div>
+    <div class="ng-col pt-30 pb-30 pd-sm-30" col-7 col-sm-12>
+
+      <div class="font-24 color-2f5 font-600 mt-5">
+        {{"Yourpassportdetails" | translate}}
+      </div>
+
+
+      <div class="font-14 color-354 font-400 mt-15">
+        {{"Pleaseuploadascanned" | translate}}
+      </div>
+
+
+      <form [formGroup]="passportform">
+        <div class="mt-32">
+          <app-attach-box [attachedHeading]="Passport" (callParentFunction)="Passportfunction($event)"
+            (callAnotherFunction)="RemoveFunction()"></app-attach-box>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"FirstName" | translate}}</label>
+          <input type="text" value="" mask="S* S* S* S*" maxlength="20" minlength="3" formControlName="FirstName"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.FirstName">
+            <span class="error-label"
+              *ngIf="passportform.controls.FirstName.hasError(validation.type) &&(passportform.controls.FirstName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'FirstName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"MiddleName" | translate}}</label>
+          <input type="text" value="" mask="S* S* S* S*" maxlength="20" formControlName="MiddleName"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.MiddleName">
+            <span class="error-label"
+              *ngIf="passportform.controls.MiddleName.hasError(validation.type) &&(passportform.controls.MiddleName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'MiddleName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"LastName" | translate}}</label>
+          <input type="text" value="" formControlName="LastName" mask="S* S* S* S*" maxlength="20" minlength="3"
+            placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.LastName">
+            <span class="error-label"
+              *ngIf="passportform.controls.LastName.hasError(validation.type) &&(passportform.controls.LastName.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'LastName') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"PassportNumber" | translate}}</label>
+          <input type="text" value="" formControlName="PassportNumber" maxlength="15" placeholder="Please enter">
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.PassportNumber">
+            <span class="error-label"
+              *ngIf="passportform.controls.PassportNumber.hasError(validation.type) &&(passportform.controls.PassportNumber.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'PassportNumber') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"PassportExpiryDate" | translate}}</label>
+        </div>
+
+        <div class="ng-row mt-5" justify-content-between>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoedaySelect" id="doedayslist" name="doedayslist" formControlName="DoedaySelect"
+                (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Date</option>
+                <option [ngValue]=a *ngFor="let a of this.doedayslistArray">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoedaySelect">
+              <span class="error-label"
+                *ngIf="passportform.controls.DoedaySelect.hasError(validation.type) &&(passportform.controls.DoedaySelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoedaySelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col p-l-r" col-6 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoeMonthSelect" id="doemonthlist" name="doemonthlist"
+                formControlName="DoeMonthSelect" (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Month</option>
+                <option [ngValue]=a.value *ngFor="let a of this.doemonthlistArray">{{a.text}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoeMonthSelect">
+              <span class="error-label"
+                *ngIf="passportform.controls.DoeMonthSelect.hasError(validation.type) &&(passportform.controls.DoeMonthSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoeMonthSelect') }}
+              </span>
+            </ng-container>
+          </div>
+          <div class="ng-col" col-3 col-sm-12>
+            <div class="form-group">
+              <select [(ngModel)]="this.DoeYearSelect" formControlName="DoeYearSelect" (change)="DoeSelectionchange()">
+                <option hidden [ngValue]=null disabled selected>Year</option>
+                <option [ngValue]=a *ngFor="let a of this.doeyears">{{a}}</option>
+              </select>
+            </div>
+            <ng-container item-content *ngFor="let validation of errorKey.validation_messages.DoeYearSelect">
+              <span class="error-label"
+                *ngIf="passportform.controls.DoeYearSelect.hasError(validation.type) &&(passportform.controls.DoeYearSelect.touched ||submitAttempt)">
+                {{ getMessage(validation.key,'DoeYearSelect') }}
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <span class="error-label" *ngIf="this.doeError">{{ "PassportExpireerror" | translate}}</span>
+
+        <!-- <div class="form-group mt-30">
+          <label>{{"PassportExpiryDate" | translate}}</label>
+          <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="MM/DD/YYYY" min="{{doemin}}" max={{this.doemax}} 
+            formControlName="passportexpiry" [(ngModel)]="this.doe" placeholder="Please select" class="mt-15">
+          </ion-datetime>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.passportexpiry">
+            <span class="error-label"
+              *ngIf="passportform.controls.passportexpiry.hasError(validation.type) &&(passportform.controls.passportexpiry.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'passportexpiry') }}
+            </span>
+          </ng-container>
+        </div> -->
+
+        <div class="form-group mt-30">
+          <label>{{"CountryofIssuance" | translate}}</label>
+          <select formControlName="CountryofIssuance">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countriesList">{{a.countryName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.CountryofIssue">
+            <span class="error-label"
+              *ngIf="passportform.controls.CountryofIssuance.hasError(validation.type) &&(passportform.controls.CountryofIssuance.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'CountryofIssuance') }}
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-30">
+          <label>{{"Nationality" | translate}}</label>
+          <select formControlName="Nationality">
+            <option hidden value="" disabled selected>Please select</option>
+            <option [ngValue]="a.isoCode3" *ngFor="let a of this.countriesList">{{a.countryName}}</option>
+          </select>
+          <ng-container item-content *ngFor="let validation of errorKey.validation_messages.Nationality">
+            <span class="error-label"
+              *ngIf="passportform.controls.Nationality.hasError(validation.type) &&(passportform.controls.Nationality.touched ||submitAttempt)">
+              {{ getMessage(validation.key,'Nationality') }}
+            </span>
+          </ng-container>
+        </div>
+      </form>
+
+
+      <div class="form-group mt-46">
+        <button class="btn-dft-white" [disabled]="isFormValid()"
+          (click)="showPopupsavedolater()">{{"SaveDoLater" | translate}}</button>
+        <button class="btn-dft mt-15" [disabled]="isFormValid()"
+          (click)="showPopupcontinue()">{{"Continue" | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="custom-modal full-width" #modal>
+  <div class="custom-modal-overlay" (click)="hidePopup()"></div>
+  <div class="custom-modal-canvas">
+    <div class="custom-modal-close">
+      <i class="icon-close-black" (click)="hidePopup()"></i>
+    </div>
+    <div class="custom-modal-canvas-scroller">
+      <div class="font-24 font-600 color-354 line-h-26 text-align-center mt-25">
+        {{ "OtherNationTitle" | translate }}
+      </div>
+      <div class="font-16 font-400 color-354 line-h-26 text-align-center mt-10">
+        {{ "otherNationMessage" | translate }}
+      </div>
+
+      <div class="ng-row mt-46" justify-content-center>
+        <div class="ng-col" col-5 col-sm-12>
+          <div class="form-group">
+            <label>{{"Country" | translate}}</label>
+            <select class="custom-select" [(ngModel)]="this.othernationality">
+              <option hidden [ngValue]=null disabled selected>Please select</option>
+              <option [ngValue]="a.isoCode3" *ngFor="let a of this.countriesList">{{a.countryName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="ng-row mt-46 mb-25" justify-content-center>
+        <div class="ng-col" col-5 col-sm-12>
+          <button class="btn-dft-white" (click)="NoOthernationality()">{{"No" | translate}}</button>
+          <button class="btn-dft mt-15" [disabled]="isanotherformvalid()"
+            (click)="ContinueOtherNationality()">{{"Continue" | translate}}</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
